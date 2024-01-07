@@ -2,24 +2,12 @@ import { config } from "dotenv";
 config();
 
 import { Client, Events, GatewayIntentBits, Message, Partials } from "discord.js";
-
-function formatCurrency(curreny: number) {
-  return curreny.toLocaleString("pt-br", {
-    style: "currency",
-    currency: "BRL",
-  });
-}
+import formatCurrency from "./utils/formatCurrency";
+import { roles } from "./constants/roles";
 
 function isAdmin(member: Message<boolean>["member"]) {
   return member?.roles.cache.has(roles.owner) || member?.roles.cache.has(roles.adm);
 }
-
-const roles = {
-  owner: "1187467037031792690",
-  adm: "1187552734723969064",
-  serverBooster: "1188199887305723905",
-  vipClient: "1187804174348464220",
-};
 
 const client = new Client({
   intents: [
