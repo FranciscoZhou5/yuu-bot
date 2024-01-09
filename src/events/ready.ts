@@ -1,6 +1,14 @@
-import { client } from "../index";
-import { ActivityType, Events } from "discord.js";
+import { ActivityType, Client, Events } from "discord.js";
 
-client.once(Events.ClientReady, () => {
-  client?.user?.setActivity("KASDKAs", { type: ActivityType.Listening });
-});
+import chalk from "chalk";
+
+export default (client: Client<boolean>) => {
+  client.once(Events.ClientReady, () => {
+    console.log(`${chalk.cyan("info")} Bot ready and logged in as ${client?.user?.tag}!`);
+
+    client?.user?.setPresence({
+      status: "online",
+      activities: [{ name: "o circo pegar fogo", type: ActivityType.Watching }],
+    });
+  });
+};
