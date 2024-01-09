@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 function loadHandlers(client: Client<boolean>) {
-  const handlersPath = path.resolve(process.cwd(), "src", "handlers");
+  const handlersPath = path.resolve(__dirname, "handlers");
   const handlers = fs.readdirSync(handlersPath);
 
   handlers.forEach((file) => {

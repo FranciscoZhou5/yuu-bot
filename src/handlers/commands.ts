@@ -9,12 +9,12 @@ export default (client: Client<boolean>) => {
   const commands = [];
   client.commands = new Collection();
 
-  const foldersPath = path.resolve(process.cwd(), "src", "commands");
+  const foldersPath = path.resolve(__dirname, "..", "commands");
   const commandFolders = fs.readdirSync(foldersPath);
 
   for (const folder of commandFolders) {
     const commandsPath = path.join(foldersPath, folder);
-    const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".ts"));
+    const commandFiles = fs.readdirSync(commandsPath);
 
     for (const file of commandFiles) {
       const filePath = path.join(commandsPath, file);
