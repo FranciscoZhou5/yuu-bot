@@ -35,7 +35,7 @@ export default {
 
     await interaction.reply({
       content: `${customer} ${
-        price ? `Seu total ficou em: ${formatCurrency(price.value as number)}` : ""
+        price ? `Seu total ficou em: __${formatCurrency(price.value as number)}__` : ""
       }`,
       embeds: [
         {

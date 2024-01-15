@@ -5,9 +5,9 @@ export const sellers = {
     name: "Francisco Zhou Liu",
   },
   ze: {
-    type: "cpf",
-    code: "000000000-00",
-    name: "Teste",
+    type: "Celular",
+    code: "71983932312",
+    name: "Deivid da Silva Andrade",
   },
   wild: {
     type: "CPF",
