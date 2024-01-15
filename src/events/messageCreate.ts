@@ -50,7 +50,86 @@ const feminineAdjectives = [
   "Serena",
 ];
 
-const masculineAdjectives = [];
+const adjectives = [
+  "alegre",
+  "brilhante",
+  "cativante",
+  "delicioso",
+  "encantador",
+  "fascinante",
+  "gracioso",
+  "harmonioso",
+  "inovador",
+  "jovial",
+  "kaleidoscópico",
+  "luminoso",
+  "maravilhoso",
+  "notável",
+  "ousado",
+  "poderoso",
+  "quente",
+  "radiante",
+  "sedutor",
+  "tranquilo",
+  "único",
+  "vibrante",
+  "wonderful",
+  "xistoso",
+  "youthful",
+  "zeloso",
+  "afetuoso",
+  "bondoso",
+  "cintilante",
+  "diligente",
+  "efervescente",
+  "fabuloso",
+  "genuíno",
+  "hospitaleiro",
+  "impressionante",
+  "jubiloso",
+  "karma-free",
+  "leal",
+  "magnífico",
+  "nurturing",
+  "ousado",
+  "pacífico",
+  "quimicamente puro",
+  "radiante",
+  "sábio",
+  "transparente",
+  "único",
+  "vivaz",
+  "wholesome",
+  "xenial",
+  "young-at-heart",
+  "zestful",
+  "admirável",
+  "bravo",
+  "criativo",
+  "determinado",
+  "empolgante",
+  "fenomenal",
+  "generoso",
+  "hilariante",
+  "inspirador",
+  "jubilante",
+  "kármico",
+  "luminoso",
+  "maravilhoso",
+  "nurturing",
+  "otimista",
+  "poderoso",
+  "quente",
+  "radiante",
+  "sábio",
+  "tranquilo",
+  "único",
+  "vibrante",
+  "wholesome",
+  "xenial",
+  "young-at-heart",
+  "zeloso",
+];
 
 export default (client: Client<boolean>) => {
   client.on(Events.MessageCreate, (interaction) => {
@@ -65,5 +144,11 @@ export default (client: Client<boolean>) => {
 
     //   interaction.reply(`${feminineAdjectives[randomIndex]}(às vezes).`);
     // }
+
+    if (interaction.content.toLocaleLowerCase() === "eu sou?") {
+      const randomIndex = Math.floor(Math.random() * adjectives.length);
+
+      interaction.reply(adjectives[randomIndex]);
+    }
   });
 };
