@@ -2,6 +2,11 @@ import { ActivityType, Client, Events } from "discord.js";
 
 export default (client: Client<boolean>) => {
   client.on(Events.InteractionCreate, async (interaction) => {
+    if (interaction.isButton()) {
+      console.log(interaction.customId);
+      return;
+    }
+
     if (!interaction.isChatInputCommand()) return;
     const command = interaction.client.commands.get(interaction.commandName);
 

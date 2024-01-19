@@ -14,4 +14,9 @@ export const sellers = {
     code: "06206495000",
     name: "Flavio Liu Zhang",
   },
+  mayu: {
+    type: "CPF",
+    code: "14155219727",
+    name: "Maria Eduarda Mayumi",
+  },
 };

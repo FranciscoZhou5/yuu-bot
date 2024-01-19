@@ -15,7 +15,8 @@ export default {
         .addChoices(
           { name: "Yuu", value: "yuu" },
           { name: "Wild", value: "wild" },
-          { name: "Zé", value: "ze" }
+          { name: "Zé", value: "ze" },
+          { name: "Mayu", value: "mayu" }
         )
     )
     .addStringOption((option) =>
