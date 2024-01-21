@@ -1,4 +1,8 @@
-import { Client, Events } from "discord.js";
+import { ActivityType, Client, Events } from "discord.js";
+import { roles } from "../constants/roles";
+
+import { getStatus, setStatus } from "../store/yuuStatus";
+import { stat } from "fs";
 
 const feminineAdjectives = [
   "Amável",
@@ -132,38 +136,75 @@ const adjectives = [
 ];
 
 export default (client: Client<boolean>) => {
-  client.on(Events.MessageCreate, (interaction) => {
-    if (interaction.content.toLowerCase() === "!") {
-      interaction.channel.send({
-        embeds: [
-          {
-            title: "teste",
-          },
-        ],
-        components: [
-          {
-            type: 1,
-            components: [
-              {
-                style: 1,
-                label: `adsadasd`,
-                custom_id: `row_0_button_0`,
-                disabled: false,
-                type: 2,
-              },
-            ],
-          },
-        ],
-      });
+  client.on(Events.MessageCreate, async (interaction) => {
+    const isYuu = interaction.member?.roles.cache.has(roles.adm);
+
+    const memberName = interaction.member?.user.username;
+    const messageContent = interaction.content;
+
+    if (isYuu) {
+      const status = getStatus();
+
+      if (status !== "on") {
+        setStatus("on");
+      }
     }
 
-    if (interaction.content.toLowerCase() === "a mayu é?") {
-      const randomIndex = Math.floor(Math.random() * feminineAdjectives.length);
+    // console.log(`${memberName}: ${messageContent}`);
 
-      interaction.reply(`${feminineAdjectives[randomIndex]}(às vezes).`);
+    if (interaction.content.includes("<@814142267719680011>")) {
+      const status = getStatus();
 
-      return;
+      const statusMessageHandler = {
+        sleeping: "dormindo",
+        afk: "afk",
+      };
+
+      if (status !== "on") {
+        await interaction.reply(`O Yuu está atualmente: ${statusMessageHandler[status]}`);
+      }
     }
+
+    // if (interaction.content.toLowerCase() === "!" && isYuu) {
+    //   await interaction.delete();
+
+    //   await interaction.channel.send(
+    //     "https://i.pinimg.com/originals/6b/bb/a4/6bbba4f581dd3373d683e144f5153bb7.jpg"
+    //   );
+
+    //   interaction.channel.send({
+    //     embeds: [
+    //       {
+    //         title: "teste",
+    //       },
+    //     ],
+    //     components: [
+    //       {
+    //         type: 1,
+    //         components: [
+    //           {
+    //             style: 1,
+    //             label: `Participar`,
+    //             custom_id: `giveaway_button`,
+    //             disabled: false,
+    //             type: 2,
+    //             emoji: {
+    //               name: `🎁`,
+    //             },
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   });
+    // }
+
+    // if (interaction.content.toLowerCase() === "a mayu é?") {
+    //   const randomIndex = Math.floor(Math.random() * feminineAdjectives.length);
+
+    //   interaction.reply(`${feminineAdjectives[randomIndex]}(às vezes).`);
+
+    //   return;
+    // }
 
     if (interaction.content.toLocaleLowerCase() === "eu sou?") {
       const randomIndex = Math.floor(Math.random() * adjectives.length);

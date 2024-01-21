@@ -4,6 +4,10 @@ export default (client: Client<boolean>) => {
   client.on(Events.InteractionCreate, async (interaction) => {
     if (interaction.isButton()) {
       console.log(interaction.customId);
+      console.log(interaction.member?.user.username);
+
+      await interaction.reply({ content: `<@${interaction.member?.user.id}>`, ephemeral: true });
+
       return;
     }
 
