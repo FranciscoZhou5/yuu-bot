@@ -1,4 +1,12 @@
-import { ActivityType, Client, Events, InteractionType, MessageType } from "discord.js";
+import {
+  ActivityType,
+  ChannelType,
+  Client,
+  Events,
+  InteractionType,
+  MessageType,
+  messageLink,
+} from "discord.js";
 import { roles } from "../constants/roles";
 
 import { getStatus, setStatus } from "../store/yuuStatus";
@@ -8,6 +16,10 @@ export default (client: Client<boolean>) => {
   client.on(Events.MessageCreate, async (interaction) => {
     const yuuId = "814142267719680011";
     const botId = "1173254805196652694";
+
+    if (interaction.channel.type === ChannelType.DM && !interaction.author.bot) {
+      console.log(`${interaction.author.username}: ${interaction.content}`);
+    }
 
     if (interaction.type === MessageType.Reply) {
       const repliedMessage = interaction.channel.messages.cache.get(
@@ -27,24 +39,7 @@ export default (client: Client<boolean>) => {
       }
     }
 
-    // if (isYuu) {
-    //   const status = getSta tus();
-
-    //   if (status !== "on") {
-    //     setStatus("on");
-    //   }
-    // }
-
     if (interaction.content.includes("<@814142267719680011>")) {
-      // const status = getStatus();
-      // const statusMessageHandler = {
-      //   sleeping: "dormindo",
-      //   afk: "afk",
-      // };
-      // if (status !== "on") {
-      //   await interaction.reply(`O Yuu está atualmente: ${statusMessageHandler[status]}`);
-      // }
-
       await interaction.reply(
         "Yuu está atualmente: **Inativo**. Se você precisa de alguma ajuda, chame algum moderador!"
       );
