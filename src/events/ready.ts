@@ -13,23 +13,23 @@ export default (client: Client<boolean>) => {
       activities: [{ name: "o circo pegar fogo", type: ActivityType.Watching }],
     });
 
-    const rule = new schedule.RecurrenceRule();
-    rule.tz = "America/Sao_Paulo";
-    rule.hour = 9;
-    rule.minute = 30;
+    // const rule = new schedule.RecurrenceRule();
+    // rule.tz = "America/Sao_Paulo";
+    // rule.hour = 9;
+    // rule.minute = 30;
 
-    const channelId = "1187454858941452400";
+    // const channelId = "1187454858941452400";
 
-    const job = schedule.scheduleJob(rule, () => {
-      const channel = client.channels.cache.get(channelId);
+    // const job = schedule.scheduleJob(rule, () => {
+    //   const channel = client.channels.cache.get(channelId);
 
-      if (channel) {
-        if (channel.isTextBased()) {
-          channel.send("Bom dia!");
-        }
+    //   if (channel) {
+    //     if (channel.isTextBased()) {
+    //       channel.send("Bom dia!");
+    //     }
 
-        job.cancel();
-      }
-    });
+    //     job.cancel();
+    //   }
+    // });
   });
 };
